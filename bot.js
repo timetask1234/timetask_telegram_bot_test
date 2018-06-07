@@ -11,26 +11,7 @@ const getToken = (function(){
     };
 })();
 
-
-/*
-const getServerKey = (function(){
-    const serverKey = process.env.SERVER_KEY;
-    return function() {
-        return serverKey;
-    };
-})();
-
-const getClientToken = (function(){
-    const clientToken = process.env.CLIENT_TOKEN;
-    return function() {
-        return clientToken;
-    };
-})();
-*/
-
-
-
- var fcm = new FCM(serverKey);
+var fcm = new FCM(serverKey);
 
 var push_data = {
     // 수신대상
@@ -69,7 +50,7 @@ bot.onText(/\/echo (.+)/, (msg, match) => {
 bot.onText(/schedule (.+)/, (msg, match) => {
 
     const chatId = msg.chat.id;
-    const resp = "서버키 : " + serverKey +"\n" + "클라이언트 토큰 : " + clientToken;
+    const resp = "서버키 : " + serverKey +"\n" + "클라이언트 토큰 : " + clientToken + "\n" + "원본 메시지 : " + msg;
 
     bot.sendMessage(chatId, resp);
     
