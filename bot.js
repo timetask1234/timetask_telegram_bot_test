@@ -1,5 +1,5 @@
 const TelegramBot = require('node-telegram-bot-api');
-var FCM = require('fcm-node');
+// var FCM = require('fcm-node');
 
 const getServerKey = const getToken = (function(){
     const token = process.env.SERVER_KEY;
@@ -23,8 +23,8 @@ const getToken = (function(){
     };
 })();
 
-var fcm = new FCM(getServerKey());
-
+// var fcm = new FCM(getServerKey());
+/*
 var push_data = {
     // 수신대상
     var client_token = getClientToken();
@@ -46,7 +46,7 @@ var push_data = {
         num1: 2000,
         num2: 3000
     }
-};
+};*/
 
 
 const bot = new TelegramBot(getToken(), {polling: true});
@@ -62,11 +62,11 @@ bot.onText(/\/echo (.+)/, (msg, match) => {
 bot.onText(/schedule (.+)/, (msg, match) => {
 
     const chatId = msg.chat.id;
-    const resp = "test";
+    const resp = "서버키 : " + getServerKey + "클라이언트 토큰 : " + getClientToken;
 
     bot.sendMessage(chatId, resp);
     
-    fcm.send(push_data, function(err, response) {
+    /*fcm.send(push_data, function(err, response) {
     if (err) {
         console.error('Push메시지 발송에 실패했습니다.');
         console.error(err);
@@ -75,5 +75,5 @@ bot.onText(/schedule (.+)/, (msg, match) => {
 
     console.log('Push메시지가 발송되었습니다.');
     console.log(response);
-});
+});*/
 });
