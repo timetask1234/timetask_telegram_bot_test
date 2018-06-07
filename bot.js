@@ -53,7 +53,7 @@ var push_data = {
         num1: 2000,
         num2: 3000
     }
-};*/
+};
 
 
 const bot = new TelegramBot(getToken(), {polling: true});
