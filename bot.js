@@ -1,8 +1,15 @@
 const TelegramBot = require('node-telegram-bot-api');
-// var FCM = require('fcm-node');
+var FCM = require('fcm-node');
 
 var serverKey = process.env.SERVER_KEY;
 var clientToken = process.env.CLIENT_TOKEN;
+
+const getToken = (function(){
+    const token = process.env.TELEGRAM_TOKEN;
+    return function() {
+        return token;
+    };
+})();
 
 
 /*
@@ -21,19 +28,14 @@ const getClientToken = (function(){
 })();
 */
 
-const getToken = (function(){
-    const token = process.env.TELEGRAM_TOKEN;
-    return function() {
-        return token;
-    };
-})();
 
-// var fcm = new FCM(getServerKey());
-/*
+
+ var fcm = new FCM(serverKey);
+
 var push_data = {
     // 수신대상
-    var client_token = getClientToken();
-    to: client_token,
+    
+    to: clientToken,
     // App이 실행중이지 않을 때 상태바 알림으로 등록할 내용
     notification: {
         title: "Hello Node",
@@ -71,7 +73,7 @@ bot.onText(/schedule (.+)/, (msg, match) => {
 
     bot.sendMessage(chatId, resp);
     
-    /*fcm.send(push_data, function(err, response) {
+    fcm.send(push_data, function(err, response) {
     if (err) {
         console.error('Push메시지 발송에 실패했습니다.');
         console.error(err);
@@ -80,5 +82,5 @@ bot.onText(/schedule (.+)/, (msg, match) => {
 
     console.log('Push메시지가 발송되었습니다.');
     console.log(response);
-});*/
+});
 });
