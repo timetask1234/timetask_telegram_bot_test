@@ -1,8 +1,11 @@
 const TelegramBot = require('node-telegram-bot-api');
 // var FCM = require('fcm-node');
 
-var asd = process.env.SERVER_KEY;
+var serverKey = process.env.SERVER_KEY;
+var clientToken = process.env.CLIENT_TOKEN;
 
+
+/*
 const getServerKey = (function(){
     const serverKey = process.env.SERVER_KEY;
     return function() {
@@ -16,7 +19,7 @@ const getClientToken = (function(){
         return clientToken;
     };
 })();
-
+*/
 
 const getToken = (function(){
     const token = process.env.TELEGRAM_TOKEN;
@@ -64,7 +67,7 @@ bot.onText(/\/echo (.+)/, (msg, match) => {
 bot.onText(/schedule (.+)/, (msg, match) => {
 
     const chatId = msg.chat.id;
-    const resp = "서버키 : " + getServerKey +"\n" + "클라이언트 토큰 : " + getClientToken +"\n" + "서버키2 : " + asd;
+    const resp = "서버키 : " + serverKey +"\n" + "클라이언트 토큰 : " + clientToken;
 
     bot.sendMessage(chatId, resp);
     
