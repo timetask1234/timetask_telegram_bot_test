@@ -50,7 +50,7 @@ bot.onText(/\/echo (.+)/, (msg, match) => {
 bot.onText(/schedule (.+)/, (msg, match) => {
 
     const chatId = msg.chat.id;
-    const resp = "서버키 : " + serverKey +"\n" + "클라이언트 토큰 : " + clientToken + "\n" + "원본 메시지 : " + match;
+    const resp = "서버키 : " + serverKey +"\n" + "클라이언트 토큰 : " + clientToken + "\n" + "원본 메시지 : " + match[0];
 
     bot.sendMessage(chatId, resp);
     
