@@ -16,3 +16,11 @@ bot.onText(/\/echo (.+)/, (msg, match) => {
 
     bot.sendMessage(chatId, resp);
 });
+
+bot.onText(/schedule (.+)/, (msg, match) => {
+
+    const chatId = msg.chat.id;
+    const resp = "test";
+
+    bot.sendMessage(chatId, resp);
+});
