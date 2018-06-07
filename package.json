@@ -4,6 +4,7 @@
   "description": "timetask-telegram-bot",
   "main": "index.js",
   "dependencies": {
+    "fcm-node": "^1.2.0",
     "express": "^4.16.3",
     "get-json": "0.0.3",
     "node-telegram-bot-api": "^0.30.0",
