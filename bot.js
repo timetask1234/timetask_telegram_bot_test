@@ -1,17 +1,17 @@
 const TelegramBot = require('node-telegram-bot-api');
 // var FCM = require('fcm-node');
 
-const getServerKey = const getToken = (function(){
-    const token = process.env.SERVER_KEY;
+const getServerKey = (function(){
+    const serverKey = process.env.SERVER_KEY;
     return function() {
-        return token;
+        return serverKey;
     };
 })();
 
-const getClientToken = const getToken = (function(){
-    const token = process.env.CLIENT_TOKEN;
+const getClientToken = (function(){
+    const clientToken = process.env.CLIENT_TOKEN;
     return function() {
-        return token;
+        return clientToken;
     };
 })();
 
