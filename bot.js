@@ -14,7 +14,16 @@ const getClientToken = const getToken = (function(){
         return token;
     };
 })();
-var fcm = new FCM(servegetServerKey());
+
+
+const getToken = (function(){
+    const token = process.env.TELEGRAM_TOKEN;
+    return function() {
+        return token;
+    };
+})();
+
+var fcm = new FCM(getServerKey());
 
 var push_data = {
     // 수신대상
@@ -39,12 +48,6 @@ var push_data = {
     }
 };
 
-const getToken = (function(){
-    const token = process.env.TELEGRAM_TOKEN;
-    return function() {
-        return token;
-    };
-})();
 
 const bot = new TelegramBot(getToken(), {polling: true});
 
