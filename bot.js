@@ -23,7 +23,7 @@ const languageCode = 'en-US';
 
 const dialogflow = require('dialogflow');
 // const sessionClient = new dialogflow.SessionsClient();
-const sessionClient = new dialogflow.SessionsClient({keyFilename:'path/to/serviceAccountKey.json'})
+const sessionClient = new dialogflow.SessionsClient({keyFilename:'./timetask-telegram-bot-49ebe8b01110.json'})
 const sessionPath = sessionClient.sessionPath(projectId, sessionId);
 
 const request = {
