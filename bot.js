@@ -1,6 +1,8 @@
 const TelegramBot = require('node-telegram-bot-api');
 var FCM = require('fcm-node');
 
+const uuidv1 = require('uuid/v1');
+
 /*const projectId = 'timetask-telegram-bot';
 const sessionId = 'AIzaSyDR2wRqjVGyw4SjIayPkoFoB_O10JJV1tg';
 const query = 'hello';
@@ -79,7 +81,7 @@ bot.onText(/\/echo (.+)/, (msg, match) => {
 bot.onText(/schedule (.+)/, (msg, match) => {
 
     const chatId = msg.chat.id;
-    const resp = "서버키 : " + serverKey +"\n" + "클라이언트 토큰 : " + clientToken + "\n" + "원본 메시지 : " + match[0];
+    const resp = "서버키 : " + serverKey +"\n" + "클라이언트 토큰 : " + clientToken + "\n" + "원본 메시지 : " + match[0] + "uuid : " + uuidv1();
 
     bot.sendMessage(chatId, resp);
     
