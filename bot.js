@@ -15,11 +15,34 @@ const getToken = (function(){
     };
 })();
 
+const bot = new TelegramBot(getToken(), {polling: true});
 
 const projectId = 'timetask-telegram-bot';
 const sessionId = uuidv1();
-const query = 'hello';
-const languageCode = 'en-US';
+
+bot.onText(/schedule (.+)/, (msg, match) => {
+    //msg가 어떤건지 확인하고 response값을 받아서 돌려줄것.
+    const query = 'hello';
+    const languageCode = 'en-US';
+
+    const chatId = msg.chat.id;
+    const resp = ${result.fulfillmentText};
+
+    bot.sendMessage(chatId, resp);
+    
+    fcm.send(push_data, function(err, response) {
+    if (err) {
+        console.error('Push메시지 발송에 실패했습니다.');
+        console.error(err);
+        return;
+    }
+
+    console.log('Push메시지가 발송되었습니다.');
+    console.log(response);
+});
+});
+
+
 
 const dialogflow = require('dialogflow');
 // const sessionClient = new dialogflow.SessionsClient();
@@ -71,33 +94,4 @@ var push_data = {
      }
 };
 
-
-const bot = new TelegramBot(getToken(), {polling: true});
-
-bot.onText(/\/echo (.+)/, (msg, match) => {
-
-    const chatId = msg.chat.id;
-    const resp = match[1];
-
-    bot.sendMessage(chatId, resp);
-});
-
-bot.onText(/schedule (.+)/, (msg, match) => {
-
-    const chatId = msg.chat.id;
-    const resp = ${result.fulfillmentText};
-
-    bot.sendMessage(chatId, resp);
-    
-    fcm.send(push_data, function(err, response) {
-    if (err) {
-        console.error('Push메시지 발송에 실패했습니다.');
-        console.error(err);
-        return;
-    }
-
-    console.log('Push메시지가 발송되었습니다.');
-    console.log(response);
-});
-});
 
