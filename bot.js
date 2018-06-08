@@ -2,7 +2,7 @@ const TelegramBot = require('node-telegram-bot-api');
 var FCM = require('fcm-node');
 
 const projectId = 'timetask-telegram-bot';
-const sessionId = 'quickstart-session-id';
+const sessionId = 'AIzaSyDR2wRqjVGyw4SjIayPkoFoB_O10JJV1tg';
 const query = 'hello';
 const languageCode = 'en-US';
 
