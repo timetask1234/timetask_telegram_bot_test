@@ -18,7 +18,7 @@ storage
     });
   })
   .catch((err) => {
-    console.error('ERROR:', err);
+    console.error('ERROR getBuccket : ', err);
   });
 
 const TelegramBot = require('node-telegram-bot-api');
@@ -71,7 +71,7 @@ sessionClient
     }
   })
   .catch(err => {
-    console.error('ERROR:', err);
+    console.error('ERROR about sessionClient :', err);
   });
 
 
