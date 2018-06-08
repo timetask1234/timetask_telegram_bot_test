@@ -1,25 +1,4 @@
-// Imports the Google Cloud client library.
-const Storage = require('@google-cloud/storage');
 
-// Instantiates a client. If you don't specify credentials when constructing
-// the client, the client library will look for credentials in the
-// environment.
-const storage = new Storage();
-
-// Makes an authenticated API request.
-storage
-  .getBuckets()
-  .then((results) => {
-    const buckets = results[0];
-
-    console.log('Buckets:');
-    buckets.forEach((bucket) => {
-      console.log(bucket.name);
-    });
-  })
-  .catch((err) => {
-    console.error('ERROR getBuccket : ', err);
-  });
 
 const TelegramBot = require('node-telegram-bot-api');
 var FCM = require('fcm-node');
@@ -43,8 +22,8 @@ const query = 'hello';
 const languageCode = 'en-US';
 
 const dialogflow = require('dialogflow');
-const sessionClient = new dialogflow.SessionsClient();
-
+// const sessionClient = new dialogflow.SessionsClient();
+const sessionClient = new dialogflow.SessionsClient({keyFilename:'path/to/serviceAccountKey.json'})
 const sessionPath = sessionClient.sessionPath(projectId, sessionId);
 
 const request = {
