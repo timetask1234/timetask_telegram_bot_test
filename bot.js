@@ -1,7 +1,7 @@
 const TelegramBot = require('node-telegram-bot-api');
 var FCM = require('fcm-node');
 
-const projectId = 'timetask-telegram-bot';
+/*const projectId = 'timetask-telegram-bot';
 const sessionId = 'AIzaSyDR2wRqjVGyw4SjIayPkoFoB_O10JJV1tg';
 const query = 'hello';
 const languageCode = 'en-US';
@@ -38,7 +38,7 @@ sessionClient
     console.error('ERROR:', err);
   });
 
-
+*/
 var serverKey = process.env.SERVER_KEY;
 var clientToken = process.env.CLIENT_TOKEN;
 
@@ -48,7 +48,7 @@ const getToken = (function(){
         return token;
     };
 })();
-/*
+
 var fcm = new FCM(serverKey);
 
 var push_data = {
@@ -93,4 +93,4 @@ bot.onText(/schedule (.+)/, (msg, match) => {
     console.log('Push메시지가 발송되었습니다.');
     console.log(response);
 });
-});*/
+});
