@@ -48,7 +48,7 @@ const getToken = (function(){
         return token;
     };
 })();
-
+/*
 var fcm = new FCM(serverKey);
 
 var push_data = {
@@ -93,4 +93,4 @@ bot.onText(/schedule (.+)/, (msg, match) => {
     console.log('Push메시지가 발송되었습니다.');
     console.log(response);
 });
-});
+});*/
