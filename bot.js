@@ -29,7 +29,7 @@ var fcm = new FCM(serverKey);
 
 bot.onText(/\/start/, function(msg, match) {
     
-    const keyboard = Markup.inlineKeyboard([
+    var keyboard = Markup.inlineKeyboard([
 	  Markup.callbackButton('Bitshare ID', 'bts'),
 	  Markup.callbackButton('Naver ID', 'naver'),
 	  Markup.callbackButton('Ether Address', 'ether'),
@@ -37,7 +37,7 @@ bot.onText(/\/start/, function(msg, match) {
 	  Markup.callbackButton('Confirm','confirm')
 	], {column: 3})
 
-    bot.sendMessage(msg.chat.id,msg, Extra.markup(keyboard));
+    bot.sendMessage(msg.chat.id,keyboard);
 });
 
 bot.onText(/.+/, (msg, match) => {
