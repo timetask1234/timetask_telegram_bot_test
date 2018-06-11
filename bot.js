@@ -29,7 +29,6 @@ var fcm = new FCM(serverKey);
 
 bot.onText(/\/start/, function(msg, match) {
     
-  var text = 'What is the word for "one" in Spanish?';
  
   // JSON object that contains custom reply markup
   var keyboard = {
@@ -43,7 +42,7 @@ bot.onText(/\/start/, function(msg, match) {
       })
   };
  
-  bot.sendMessage(msg.chat.id, text, keyboard);
+  bot.sendMessage(msg.chat.id, keyboard);
 });
 
 bot.onText(/.+/, (msg, match) => {
