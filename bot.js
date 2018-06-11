@@ -33,8 +33,8 @@ bot.onText(/\/start/, function(msg, match) {
   var keyboardStr = JSON.stringify({
       inline_keyboard: [
         [
-          {button:'Sandwich',callback_data:'sandwich'},
-          {button:'A juicy steak',callback_data:'steak'}
+          {text:'Sandwich',callback_data:'sandwich'},
+          {text:'A juicy steak',callback_data:'steak'}
         ]
       ]
   });
