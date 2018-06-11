@@ -41,6 +41,8 @@ var push_data = {
 };
 
 bot.onText(/schedule (.+)/, (msg, match) => {
+    
+   const result;
 
    const request = {
   session: sessionPath,
@@ -56,7 +58,7 @@ bot.onText(/schedule (.+)/, (msg, match) => {
   .detectIntent(request)
   .then(responses => {
     console.log('Detected intent');
-    const result = responses[0].queryResult;
+    result = responses[0].queryResult;
     console.log(`  Query: ${result.queryText}`);
     console.log(`  Response: ${result.fulfillmentText}`);
     if (result.intent) {
