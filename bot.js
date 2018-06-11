@@ -28,21 +28,19 @@ const sessionPath = sessionClient.sessionPath(projectId, sessionId);
 var fcm = new FCM(serverKey);
 
 bot.onText(/\/start/, function(msg, match) {
-    
+  var text = '원하는 기능을 선택해주세요.';
  
-  // JSON object that contains custom reply markup
-  var keyboard = {
-      reply_markup: JSON.stringify({
-        keyboard: [
-          ['Uno'],
-          ['Dos'],
-          ['Tres'],
-          ['Cuatro']
+  var keyboardStr = JSON.stringify({
+      inline_keyboard: [
+        [
+          {button:'Sandwich',callback_data:'sandwich'},
+          {button:'A juicy steak',callback_data:'steak'}
         ]
-      })
-  };
+      ]
+  });
  
-  bot.sendMessage(msg.chat.id, keyboard);
+  var keyboard = {reply_markup: JSON.parse(keyboardStr)};
+  bot.sendMessage(msg.chat.id, text, keyboard);
 });
 
 bot.onText(/.+/, (msg, match) => {
