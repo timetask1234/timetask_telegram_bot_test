@@ -1,5 +1,5 @@
 
-
+/*
 const TelegramBot = require('node-telegram-bot-api');
 const dialogflow = require('dialogflow');
 
@@ -12,13 +12,13 @@ var clientToken = process.env.CLIENT_TOKEN;
 var token = process.env.TELEGRAM_TOKEN;
 
 
-/*
+
 const getToken = (function(){
     const token = process.env.TELEGRAM_TOKEN;
     return function() {
         return token;
     };
-})();*/
+})();
 const bot = new TelegramBot(token, {polling: true});
 
  const projectId = 'timetask-telegram-bot';
@@ -43,7 +43,7 @@ var push_data = {
      body: 'request.body.queryResult.fulfillmentText'
      }
 };
-
+/*
 bot.onText(/schedule (.+)/, (msg, match) => {
     //msg가 어떤건지 확인하고 response값을 받아서 돌려줄것.
    /* const query = match[0];
@@ -75,7 +75,7 @@ bot.onText(/schedule (.+)/, (msg, match) => {
   .catch(err => {
     console.error('ERROR about sessionClient :', err);
   });*/
-
+/*
     const chatId = msg.chat.id;
  //   const resp = ${result.fulfillmentText};
 
@@ -96,5 +96,39 @@ bot.onText(/schedule (.+)/, (msg, match) => {
 });
 
 
+*/
 
+const TelegramBot = require('node-telegram-bot-api');
+const getJSON = require('get-json');
+
+const getToken = (function(){
+    const token = process.env.TELEGRAM_TOKEN;
+    return function() {
+        return token;
+    };
+})();
+
+const bot = new TelegramBot(getToken(), {polling: true});
+
+// Matches "/echo [whatever]"
+bot.onText(/\/echo (.+)/, (msg, match) => {
+    // 'msg' is the received Message from Telegram
+    // 'match' is the result of executing the regexp above on the text content
+    // of the message
+
+    const chatId = msg.chat.id;
+    const resp = match[1]; // the captured "whatever"
+
+    // send back the matched "whatever" to the chat
+    bot.sendMessage(chatId, resp);
+});
+
+// Listen for any kind of message. There are different kinds of
+// messages.
+bot.on('message', (msg) => {
+    //const chatId = msg.chat.id;
+
+    // send a message to the chat acknowledging receipt of their message
+    //bot.sendMessage(chatId, 'Received your message');
+});
 
