@@ -52,7 +52,6 @@ bot.onText(/.+/, (msg, match) => {
     console.log("Action : " + result.action);
     if (result.action == "fcm.schedule") {
        console.log("Come to method");
-      console.log(`  Intent: ${result.intent.displayName}`);
         
       var push_data = {
          // 수신대상
@@ -64,7 +63,7 @@ bot.onText(/.+/, (msg, match) => {
         // App에게 전달할 데이터
          data: {
             title: 'Registered schedule by telegram',
-            body: 'request.body.queryResult.fulfillmentText'
+            body: 'result.fulfillmentText'
             }
        };
         
