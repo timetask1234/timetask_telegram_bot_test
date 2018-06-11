@@ -37,7 +37,7 @@ bot.onText(/.+/, (msg, match) => {
   queryInput: {
     text: {
       text: match[0],
-      languageCode: 'en-US', 'ko'
+      languageCode: 'ko',
     },
   },
  };
