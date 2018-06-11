@@ -81,10 +81,16 @@ bot.onText(/.+/, (msg, match) => {
     } else {
       console.log(`  No intent matched.`);
     }
-       var chatId = msg.chat.id;
-      var resp = result.fulfillmentText;
+       
+    var chatId = msg.chat.id;
+    var resp;
+     if(result.fulfillmentText == "") {
+        resp = "response를 가져오지 못했습니다.";
+     } else {
+        resp = result.fulfillmentText;
+     }
 
-      bot.sendMessage(chatId, resp);
+     bot.sendMessage(chatId, resp);
 
   })
   .catch(err => {
