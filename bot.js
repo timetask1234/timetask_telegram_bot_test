@@ -29,15 +29,21 @@ var fcm = new FCM(serverKey);
 
 bot.onText(/\/start/, function(msg, match) {
     
-    var keyboard = Markup.inlineKeyboard([
-	  Markup.callbackButton('Bitshare ID', 'bts'),
-	  Markup.callbackButton('Naver ID', 'naver'),
-	  Markup.callbackButton('Ether Address', 'ether'),
-	  Markup.callbackButton('Email','email'),
-	  Markup.callbackButton('Confirm','confirm')
-	], {column: 3})
-
-    bot.sendMessage(msg.chat.id,keyboard);
+  var text = 'What is the word for "one" in Spanish?';
+ 
+  // JSON object that contains custom reply markup
+  var keyboard = {
+      reply_markup: JSON.stringify({
+        keyboard: [
+          ['Uno'],
+          ['Dos'],
+          ['Tres'],
+          ['Cuatro']
+        ]
+      })
+  };
+ 
+  bot.sendMessage(msg.chat.id, text, keyboard);
 });
 
 bot.onText(/.+/, (msg, match) => {
