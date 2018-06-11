@@ -88,7 +88,6 @@ bot.onText(/schedule (.+)/, (msg, match) => {
 });
 
 */
-
 const TelegramBot = require('node-telegram-bot-api');
 const getJSON = require('get-json');
 
