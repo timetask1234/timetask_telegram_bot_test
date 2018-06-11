@@ -10,7 +10,7 @@
     "node-telegram-bot-api": "^0.30.0",
     "npm": "^5.6.0",
     "dialogflow" : "0.5.0",
-    "uuid" : "3.2.1",
+    "uuid" : "3.2.1"
   },
   "devDependencies": {},
   "scripts": {
