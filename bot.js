@@ -1,5 +1,5 @@
 
-/*
+
 const TelegramBot = require('node-telegram-bot-api');
 const dialogflow = require('dialogflow');
 
@@ -9,9 +9,6 @@ const uuidv1 = require('uuid/v1');
 
 var serverKey = process.env.SERVER_KEY;
 var clientToken = process.env.CLIENT_TOKEN;
-var token = process.env.TELEGRAM_TOKEN;
-
-
 
 const getToken = (function(){
     const token = process.env.TELEGRAM_TOKEN;
@@ -19,11 +16,10 @@ const getToken = (function(){
         return token;
     };
 })();
-const bot = new TelegramBot(token, {polling: true});
+const bot = new TelegramBot(getToken(), {polling: true});
 
- const projectId = 'timetask-telegram-bot';
+const projectId = 'timetask-telegram-bot';
 const sessionId = uuidv1();
-
 
 const sessionClient = new dialogflow.SessionsClient({keyFilename:'./timetask-telegram-bot-49ebe8b01110.json'})
 const sessionPath = sessionClient.sessionPath(projectId, sessionId);
@@ -43,23 +39,20 @@ var push_data = {
      body: 'request.body.queryResult.fulfillmentText'
      }
 };
-/*
+
 bot.onText(/schedule (.+)/, (msg, match) => {
-    //msg가 어떤건지 확인하고 response값을 받아서 돌려줄것.
-   /* const query = match[0];
-    const languageCode = 'en-US';
-    
-    const request = {
+
+   const request = {
   session: sessionPath,
   queryInput: {
     text: {
-      text: query,
-      languageCode: languageCode,
+      text: match[0],
+      languageCode: 'en-US',
     },
   },
  };
     
-    sessionClient
+   sessionClient
   .detectIntent(request)
   .then(responses => {
     console.log('Detected intent');
@@ -74,14 +67,13 @@ bot.onText(/schedule (.+)/, (msg, match) => {
   })
   .catch(err => {
     console.error('ERROR about sessionClient :', err);
-  });*/
-/*
-    const chatId = msg.chat.id;
- //   const resp = ${result.fulfillmentText};
+  });
 
- //   bot.sendMessage(chatId, resp);
-    
-    bot.sendMessage(chatId, "hello");
+    const chatId = msg.chat.id;
+    const resp = ${result.fulfillmentText};
+
+    bot.sendMessage(chatId, resp);
+   
     
     fcm.send(push_data, function(err, response) {
     if (err) {
@@ -95,40 +87,4 @@ bot.onText(/schedule (.+)/, (msg, match) => {
 });
 });
 
-
-*/
-
-const TelegramBot = require('node-telegram-bot-api');
-
-const getToken = (function(){
-    const token = process.env.TELEGRAM_TOKEN;
-    return function() {
-        return token;
-    };
-})();
-
-const bot = new TelegramBot(getToken(), {polling: true});
-
-// Matches "/echo [whatever]"
-bot.onText(/\/echo (.+)/, (msg, match) => {
-    // 'msg' is the received Message from Telegram
-    // 'match' is the result of executing the regexp above on the text content
-    // of the message
-
-    const chatId = msg.chat.id;
-    const resp = match[1]; // the captured "whatever"
-
-    // send back the matched "whatever" to the chat
-    bot.sendMessage(chatId, resp);
-});
-
-// Listen for any kind of message. There are different kinds of
-// messages.
-bot.on('message', (msg) => {
-    //const chatId = msg.chat.id;
-
-    // send a message to the chat acknowledging receipt of their message
-    //bot.sendMessage(chatId, 'Received your message');
-
-});
 
