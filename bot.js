@@ -9,6 +9,7 @@ const uuidv1 = require('uuid/v1');
 
 var serverKey = process.env.SERVER_KEY;
 var clientToken = process.env.CLIENT_TOKEN;
+var clientToken2 = process.env.CLIENT_TOKEN2;
 
 const getToken = (function(){
     const token = process.env.TELEGRAM_TOKEN;
@@ -60,7 +61,7 @@ bot.onText(/.+/, (msg, match) => {
         
       var push_data = {
          // 수신대상
-       to: clientToken,
+       to: clientToken2,
         // 메시지 중요도
        priority: "high",
         // App 패키지 이름
