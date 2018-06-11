@@ -42,7 +42,7 @@ var push_data = {
 
 bot.onText(/schedule (.+)/, (msg, match) => {
     
-   const result;
+   var result;
 
    const request = {
   session: sessionPath,
@@ -61,6 +61,7 @@ bot.onText(/schedule (.+)/, (msg, match) => {
     result = responses[0].queryResult;
     console.log(`  Query: ${result.queryText}`);
     console.log(`  Response: ${result.fulfillmentText}`);
+    console.log(result.action);
     if (result.intent) {
       console.log(`  Intent: ${result.intent.displayName}`);
     } else {
@@ -71,8 +72,8 @@ bot.onText(/schedule (.+)/, (msg, match) => {
     console.error('ERROR about sessionClient :', err);
   });
 
-    const chatId = msg.chat.id;
-    const resp = ${result.fulfillmentText};
+    var chatId = msg.chat.id;
+    var resp = ${result.fulfillmentText};
 
     bot.sendMessage(chatId, resp);
    
