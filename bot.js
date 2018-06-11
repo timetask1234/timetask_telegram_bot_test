@@ -68,7 +68,7 @@ bot.onText(/.+/, (msg, match) => {
         // App에게 전달할 데이터
          data: {
             title: 'Registered schedule by telegram',
-            body: 'result.fulfillmentText'
+            body: result.fulfillmentText
             }
        };
         
