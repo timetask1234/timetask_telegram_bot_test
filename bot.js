@@ -50,7 +50,7 @@ bot.onText(/.+/, (msg, match) => {
     console.log("queryText : " +result.queryText);
     console.log("Response : "  + result.fulfillmentText);
     console.log("Action : " + result.action);
-    if (result.Action == "fcm.schedule") {
+    if (result.action == "fcm.schedule") {
        console.log("Come to method");
       console.log(`  Intent: ${result.intent.displayName}`);
         
