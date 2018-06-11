@@ -10,6 +10,8 @@ const uuidv1 = require('uuid/v1');
 var serverKey = process.env.SERVER_KEY;
 var clientToken = process.env.CLIENT_TOKEN;
 var token = process.env.TELEGRAM_TOKEN;
+
+
 /*
 const getToken = (function(){
     const token = process.env.TELEGRAM_TOKEN;
@@ -17,7 +19,6 @@ const getToken = (function(){
         return token;
     };
 })();*/
-
 const bot = new TelegramBot(token, {polling: true});
 
  const projectId = 'timetask-telegram-bot';
