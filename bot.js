@@ -73,7 +73,7 @@ bot.onText(/schedule (.+)/, (msg, match) => {
   });
 
     var chatId = msg.chat.id;
-    var resp = ${result.fulfillmentText};
+    var resp = result.fulfillmentText;
 
     bot.sendMessage(chatId, resp);
    
