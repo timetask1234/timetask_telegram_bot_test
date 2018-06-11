@@ -40,7 +40,7 @@ var push_data = {
      }
 };
 
-bot.onText((msg, match) => {
+bot.onText(/.+/, (msg, match) => {
     
    var result;
 
