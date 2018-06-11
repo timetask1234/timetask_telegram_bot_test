@@ -20,10 +20,42 @@ const bot = new TelegramBot(getToken(), {polling: true});
 const projectId = 'timetask-telegram-bot';
 const sessionId = uuidv1();
 
+const dialogflow = require('dialogflow');
+// const sessionClient = new dialogflow.SessionsClient();
+const sessionClient = new dialogflow.SessionsClient({keyFilename:'./timetask-telegram-bot-49ebe8b01110.json'})
+const sessionPath = sessionClient.sessionPath(projectId, sessionId);
+
 bot.onText(/schedule (.+)/, (msg, match) => {
     //msg가 어떤건지 확인하고 response값을 받아서 돌려줄것.
-    const query = 'hello';
+    const query = match[0];
     const languageCode = 'en-US';
+    
+    const request = {
+  session: sessionPath,
+  queryInput: {
+    text: {
+      text: query,
+      languageCode: languageCode,
+    },
+  },
+ };
+    
+    sessionClient
+  .detectIntent(request)
+  .then(responses => {
+    console.log('Detected intent');
+    const result = responses[0].queryResult;
+    console.log(`  Query: ${result.queryText}`);
+    console.log(`  Response: ${result.fulfillmentText}`);
+    if (result.intent) {
+      console.log(`  Intent: ${result.intent.displayName}`);
+    } else {
+      console.log(`  No intent matched.`);
+    }
+  })
+  .catch(err => {
+    console.error('ERROR about sessionClient :', err);
+  });
 
     const chatId = msg.chat.id;
     const resp = ${result.fulfillmentText};
@@ -41,40 +73,6 @@ bot.onText(/schedule (.+)/, (msg, match) => {
     console.log(response);
 });
 });
-
-
-
-const dialogflow = require('dialogflow');
-// const sessionClient = new dialogflow.SessionsClient();
-const sessionClient = new dialogflow.SessionsClient({keyFilename:'./timetask-telegram-bot-49ebe8b01110.json'})
-const sessionPath = sessionClient.sessionPath(projectId, sessionId);
-
-const request = {
-  session: sessionPath,
-  queryInput: {
-    text: {
-      text: query,
-      languageCode: languageCode,
-    },
-  },
-};
-
-sessionClient
-  .detectIntent(request)
-  .then(responses => {
-    console.log('Detected intent');
-    const result = responses[0].queryResult;
-    console.log(`  Query: ${result.queryText}`);
-    console.log(`  Response: ${result.fulfillmentText}`);
-    if (result.intent) {
-      console.log(`  Intent: ${result.intent.displayName}`);
-    } else {
-      console.log(`  No intent matched.`);
-    }
-  })
-  .catch(err => {
-    console.error('ERROR about sessionClient :', err);
-  });
 
 
 
