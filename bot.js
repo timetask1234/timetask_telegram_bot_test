@@ -40,7 +40,7 @@ var push_data = {
      }
 };
 
-bot.onText(/schedule (.+)/, (msg, match) => {
+bot.onText((.+)/, (msg, match) => {
     
    var result;
 
