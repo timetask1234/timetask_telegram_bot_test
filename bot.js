@@ -67,17 +67,16 @@ bot.onText(/schedule (.+)/, (msg, match) => {
     } else {
       console.log(`  No intent matched.`);
     }
+       
+    var chatId = msg.chat.id;
+    var resp = result.fulfillmentText;
+
+    bot.sendMessage(chatId, resp);
   })
   .catch(err => {
     console.error('ERROR about sessionClient :', err);
   });
 
-    var chatId = msg.chat.id;
-    var resp = result.fulfillmentText;
-
-    bot.sendMessage(chatId, resp);
-   
-    
     fcm.send(push_data, function(err, response) {
     if (err) {
         console.error('Push메시지 발송에 실패했습니다.');
