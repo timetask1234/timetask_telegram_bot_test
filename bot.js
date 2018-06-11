@@ -62,16 +62,19 @@ bot.onText(/.+/, (msg, match) => {
     console.log("queryText : " +result.queryText);
     console.log("Response : "  + result.fulfillmentText);
     console.log("Action : " + result.action);
-    if (result.intent) {
+    if (result.Action == 'fcm.schedule') {
       console.log(`  Intent: ${result.intent.displayName}`);
+      
+      var chatId = msg.chat.id;
+      var resp = result.fulfillmentText;
+
+      bot.sendMessage(chatId, resp);
+        
     } else {
       console.log(`  No intent matched.`);
     }
        
-    var chatId = msg.chat.id;
-    var resp = result.fulfillmentText;
 
-    bot.sendMessage(chatId, resp);
   })
   .catch(err => {
     console.error('ERROR about sessionClient :', err);
