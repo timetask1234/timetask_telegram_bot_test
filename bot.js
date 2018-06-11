@@ -78,16 +78,14 @@ bot.onText(/.+/, (msg, match) => {
             console.log('Push메시지가 발송되었습니다.');
             console.log(response);
             });  
-      
-      var chatId = msg.chat.id;
-      var resp = result.fulfillmentText;
-
-      bot.sendMessage(chatId, resp);
         
     } else {
       console.log(`  No intent matched.`);
     }
-       
+       var chatId = msg.chat.id;
+      var resp = result.fulfillmentText;
+
+      bot.sendMessage(chatId, resp);
 
   })
   .catch(err => {
