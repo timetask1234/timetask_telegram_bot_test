@@ -45,13 +45,18 @@ bot.onText(/.+/, (msg, match) => {
    sessionClient
   .detectIntent(request)
   .then(responses => {
-    console.log('Detected intent');
+
     result = responses[0].queryResult;
+    var chatId = msg.chat.id;
+    var resp;
+       
     console.log("queryText : " +result.queryText);
     console.log("Response : "  + result.fulfillmentText);
     console.log("Action : " + result.action);
+       
     if (result.action == "fcm.schedule") {
        console.log("Come to method");
+       resp = "일정 등록을 제안하였습니다.";
         
       var push_data = {
          // 수신대상
@@ -80,14 +85,13 @@ bot.onText(/.+/, (msg, match) => {
         
     } else {
       console.log(`  No intent matched.`);
+      resp = result.fulfillmentText;
     }
        
-    var chatId = msg.chat.id;
-    var resp;
+
+
      if(result.fulfillmentText == "") {
         resp = "response를 가져오지 못했습니다.";
-     } else {
-        resp = result.fulfillmentText;
      }
 
      bot.sendMessage(chatId, resp);
