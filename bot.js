@@ -1,8 +1,10 @@
 
 
 const TelegramBot = require('node-telegram-bot-api');
-var FCM = require('fcm-node');
+const dialogflow = require('dialogflow');
 
+
+var FCM = require('fcm-node');
 const uuidv1 = require('uuid/v1');
 
 var serverKey = process.env.SERVER_KEY;
@@ -20,8 +22,7 @@ const bot = new TelegramBot(getToken(), {polling: true});
 const projectId = 'timetask-telegram-bot';
 const sessionId = uuidv1();
 
-const dialogflow = require('dialogflow');
-// const sessionClient = new dialogflow.SessionsClient();
+
 const sessionClient = new dialogflow.SessionsClient({keyFilename:'./timetask-telegram-bot-49ebe8b01110.json'})
 const sessionPath = sessionClient.sessionPath(projectId, sessionId);
 
@@ -73,8 +74,6 @@ bot.onText(/schedule (.+)/, (msg, match) => {
     console.log(response);
 });
 });
-
-
 
 var fcm = new FCM(serverKey);
 
