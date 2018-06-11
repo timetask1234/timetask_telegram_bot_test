@@ -19,16 +19,32 @@ const getToken = (function(){
 
 const bot = new TelegramBot(getToken(), {polling: true});
 
-const projectId = 'timetask-telegram-bot';
+ const projectId = 'timetask-telegram-bot';
 const sessionId = uuidv1();
 
 
 const sessionClient = new dialogflow.SessionsClient({keyFilename:'./timetask-telegram-bot-49ebe8b01110.json'})
 const sessionPath = sessionClient.sessionPath(projectId, sessionId);
 
+var fcm = new FCM(serverKey);
+
+var push_data = {
+ // 수신대상
+ to: clientToken,
+ // 메시지 중요도
+ priority: "high",
+ // App 패키지 이름
+ restricted_package_name: "fcm.lge.com.fcm",
+ // App에게 전달할 데이터
+ data: {
+     title: 'Registered schedule by telegram',
+     body: 'request.body.queryResult.fulfillmentText'
+     }
+};
+
 bot.onText(/schedule (.+)/, (msg, match) => {
     //msg가 어떤건지 확인하고 response값을 받아서 돌려줄것.
-    const query = match[0];
+   /* const query = match[0];
     const languageCode = 'en-US';
     
     const request = {
@@ -56,12 +72,14 @@ bot.onText(/schedule (.+)/, (msg, match) => {
   })
   .catch(err => {
     console.error('ERROR about sessionClient :', err);
-  });
+  });*/
 
     const chatId = msg.chat.id;
-    const resp = ${result.fulfillmentText};
+ //   const resp = ${result.fulfillmentText};
 
-    bot.sendMessage(chatId, resp);
+ //   bot.sendMessage(chatId, resp);
+    
+    bot.sendMessage(chatId, "hello");
     
     fcm.send(push_data, function(err, response) {
     if (err) {
@@ -75,20 +93,6 @@ bot.onText(/schedule (.+)/, (msg, match) => {
 });
 });
 
-var fcm = new FCM(serverKey);
 
-var push_data = {
- // 수신대상
- to: clientToken,
- // 메시지 중요도
- priority: "high",
- // App 패키지 이름
- restricted_package_name: "fcm.lge.com.fcm",
- // App에게 전달할 데이터
- data: {
-     title: 'Registered schedule by telegram',
-     body: 'request.body.queryResult.fulfillmentText'
-     }
-};
 
 
