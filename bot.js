@@ -30,17 +30,16 @@ var fcm = new FCM(serverKey);
 bot.onText(/\/start/, function(msg, match) {
   var text = '원하는 기능을 선택해주세요.';
  
-  var keyboardStr = JSON.stringify({
-      inline_keyboard: [
-        [
-          {text:'Sandwich',callback_data:'sandwich'},
-          {text:'A juicy steak',callback_data:'steak'}
-        ]
-      ]
-  });
- 
-  var keyboard = {reply_markup: JSON.parse(keyboardStr)};
-  bot.sendMessage(msg.chat.id, text, keyboard);
+const keyboard = Markup.inlineKeyboard([
+	  Markup.callbackButton('Bitshare ID', 'bts'),
+	  Markup.callbackButton('Naver ID', 'naver'),
+	  Markup.callbackButton('Ether Address', 'ether'),
+	  Markup.callbackButton('Email','email'),
+	  Markup.callbackButton('Confirm','confirm')
+	], {column: 3})
+
+
+  bot.sendMessage(msg.chat.id, text, Extra.markup(keyboard));
 });
 
 bot.onText(/.+/, (msg, match) => {
