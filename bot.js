@@ -59,9 +59,9 @@ bot.onText(/schedule (.+)/, (msg, match) => {
   .then(responses => {
     console.log('Detected intent');
     result = responses[0].queryResult;
-    console.log(`  Query: ${result.queryText}`);
-    console.log(`  Response: ${result.fulfillmentText}`);
-    console.log(result.action);
+    console.log("queryText : " +result.queryText);
+    console.log("Response : "  + result.fulfillmentText);
+    console.log("Action : " + result.action);
     if (result.intent) {
       console.log(`  Intent: ${result.intent.displayName}`);
     } else {
