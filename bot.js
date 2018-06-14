@@ -67,7 +67,7 @@ bot.on('callback_query', function(msg) {
   		console.log(feed.category);
  
   		feed.items.forEach(item => {
-    			console.log(item.title + ':' + item.link)
+    			console.log(item.category + ':' + item.link)
   		});
  
 	   })();
