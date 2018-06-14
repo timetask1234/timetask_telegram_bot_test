@@ -1,5 +1,5 @@
 
-/*
+
 const TelegramBot = require('node-telegram-bot-api');
 const dialogflow = require('dialogflow');
 
@@ -49,6 +49,14 @@ bot.onText(/\/start/, function(msg, match) {
 
   var keyboard = {reply_markup: JSON.parse(keyboardStr)};
   bot.sendMessage(msg.chat.id, text, keyboard);
+});
+
+
+bot.on('callback_data', function(msg) {
+	var data = msg.data;
+	if(data == 'callback_schedule') {
+		console.log("A");
+	}
 });
 
 bot.onText(/.+/, (msg, match) => {
@@ -105,19 +113,16 @@ bot.onText(/.+/, (msg, match) => {
             console.log('Push메시지가 발송되었습니다.');
             console.log(response);
             });  
+     if(result.fulfillmentText == "") {
+        resp = "response를 가져오지 못했습니다.";
+     }
+	           
+     bot.sendMessage(chatId, resp);
         
     } else {
       console.log(`  No intent matched.`);
       resp = result.fulfillmentText;
     }
-       
-
-
-     if(result.fulfillmentText == "") {
-        resp = "response를 가져오지 못했습니다.";
-     }
-
-     bot.sendMessage(chatId, resp);
 
   })
   .catch(err => {
@@ -127,7 +132,7 @@ bot.onText(/.+/, (msg, match) => {
 
 });
 
-*/
+/*
 
 
 const TelegramBot = require('node-telegram-bot-api');
@@ -334,5 +339,5 @@ bot.onText(/.+/, (msg, match) => {
 
 });
 
-
+*/
 
