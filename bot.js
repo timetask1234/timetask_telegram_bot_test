@@ -64,11 +64,11 @@ bot.on('callback_query', function(msg) {
 	   (async () => {
  
   		let feed = await parser.parseURL('http://www.kma.go.kr/wid/queryDFSRSS.jsp?zone=1156054000');
-  		console.log(feed.category);
+  		console.log(feed);
  
-  		feed.items.forEach(item => {
-    			console.log(item.category + ':' + item.link)
-  		});
+  		//feed.items.forEach(item => {
+    	//		console.log(item.category + ':' + item.link)
+  	//	});
  
 	   })();
 		
