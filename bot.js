@@ -301,6 +301,8 @@ bot.onText(/날씨/, (msg, match) => {
   
 });
 
+bot.on('callback_query', function(msg) {bot.answerCallbackQuery(msg.id, 'Youhit a button!',false);});
+
 bot.onText(/.+/, (msg, match) => {
    var result;
 
