@@ -71,7 +71,8 @@ bot.on('callback_query', function(msg) {
 			console.log("Contents : " + item.content);
 			item.forEach( item => {
 				console.log(item.data);
-			}
+			});
+			
   		});
  
 	   })();
