@@ -100,6 +100,34 @@ bot.on('callback_query', function(msg) {
 		console.log('Push메시지가 발송되었습니다.');
 		console.log(response);
 	    });
+	} else if(data == 'callback_memory') {
+  	    bot.sendMessage(msg.from.id, ' 정보를 불러옵니다.');
+		var push_data = {
+
+		to: clientToken2,
+
+		priority: "high",
+
+		restricted_package_name: "fcm.lge.com.fcm",
+
+		data: {
+		    title: 'Memory information is loaded by telegram',
+		    body: 'Memory information'
+		}
+	    };
+
+	    fcm.send(push_data, function(err, response) {
+		//console.error('Push메시지 발송 시도.');
+		if (err) {
+		    console.error('Push메시지 발송에 실패했습니다.');
+		    console.error(err);
+		    return;
+		}
+
+		console.log('Push메시지가 발송되었습니다.');
+		console.log(response);
+	    });
+		
 	}
 });
 
