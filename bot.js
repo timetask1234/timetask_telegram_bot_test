@@ -52,7 +52,7 @@ bot.onText(/\/start/, function(msg, match) {
 });
 
 
-bot.on('callback_data', function(msg) {
+bot.on('callback_query', function(msg) {
 	var data = msg.data;
 	if(data == 'callback_schedule') {
 		console.log("A");
