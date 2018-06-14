@@ -68,8 +68,8 @@ bot.on('callback_query', function(msg) {
 	      var city = $("location:nth-child(1) > city").text();
 	      var date = $("channel:nth-child(1) > pubDate").text() + ' 발표';
 	      bot.sendMessage(msg.from.id, city + date);
-	      var temp = '온도: '+$("data:nth-child(1) > temp").text()+', '+$("data:nth-child(1) > wfKor").text();
-	      bot.sendMessage(msg.from.id, temp);
+	   //   var temp = '온도: '+$("data:nth-child(1) > temp").text()+', '+$("data:nth-child(1) > wfKor").text();
+	  //    bot.sendMessage(msg.from.id, temp);
 	      // 필요한 항목을 추출해서 표시 ---------------------- (※1)
 
 	    });	
