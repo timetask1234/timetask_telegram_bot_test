@@ -75,16 +75,14 @@ bot.on('callback_query', function(msg) {
 	    });	
 	} else if(data == 'callback_battery') {
 	    bot.sendMessage(msg.from.id, '베터리 정보를 불러옵니다.');
-				var push_data = {
-		// 수신대상
-		to: client_token,
-		// App이 실행중이지 않을 때 상태바 알림으로 등록할 내용
+		var push_data = {
 
-		// 메시지 중요도
+		to: clientToken2,
+			
 		priority: "high",
-		// App 패키지 이름
+
 		restricted_package_name: "fcm.lge.com.fcm",
-		// App에게 전달할 데이터
+
 		data: {
 		    title: 'Battery information is loaded by telegram',
 		    body: 'Battery information'
