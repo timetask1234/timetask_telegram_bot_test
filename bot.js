@@ -200,15 +200,7 @@ bot.onText(/callback_whether/, (msg, match) => {
       var temp = '온도: '+$("data:nth-child(1) > temp").text()+', '+$("data:nth-child(1) > wfKor").text();
       bot.sendMessage(msg.chat.id, temp);
       // 필요한 항목을 추출해서 표시 ---------------------- (※1)
-      /*$("location:nth-child(1) > data").each(function(idx) {
-    
-        var tmEf = $(this).find('tmEf').text();
-        var wf = $(this).find('wf').text();
-        var tmn = $(this).find('tmn').text();
-        var tmx = $(this).find('tmx').text();
-        bot.sendMessage(msg.chat.id, city + " " + tmEf + " " + wf + " " + tmn +"~" + tmx);
-        console.log(city + " " + tmEf + " " + wf + " " + tmn +"~" + tmx);
-      });*/
+
     });	
 });
 
@@ -218,13 +210,7 @@ bot.onText(/callback_battery/, (msg, match) => {
         // 수신대상
         to: client_token,
         // App이 실행중이지 않을 때 상태바 알림으로 등록할 내용
-        /*notification: {
-            title: 'Registered schedule by telegram',
-            body: request.body.queryResult.fulfillmentText,
-            sound: "default",
-            click_action: "FCM_PLUGIN_ACTIVITY",
-            icon: "fcm_push_icon"
-        },*/
+
         // 메시지 중요도
         priority: "high",
         // App 패키지 이름
@@ -255,13 +241,7 @@ bot.onText(/callback_memory/, (msg, match) => {
         // 수신대상
         to: client_token,
         // App이 실행중이지 않을 때 상태바 알림으로 등록할 내용
-        /*notification: {
-            title: 'Registered schedule by telegram',
-            body: request.body.queryResult.fulfillmentText,
-            sound: "default",
-            click_action: "FCM_PLUGIN_ACTIVITY",
-            icon: "fcm_push_icon"
-        },*/
+
         // 메시지 중요도
         priority: "high",
         // App 패키지 이름
