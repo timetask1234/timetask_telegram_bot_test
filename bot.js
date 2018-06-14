@@ -68,7 +68,8 @@ bot.on('callback_query', function(msg) {
 		 console.log(feed.items);
  
   		feed.items.forEach(item => {
-  			console.log(item.author + ':' + item.categories)
+  			console.log(item.author + ':' + item.categories);
+			console.log("Contents : " + item.content);
   		});
  
 	   })();
