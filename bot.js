@@ -55,7 +55,7 @@ bot.onText(/\/start/, function(msg, match) {
 bot.on('callback_query', function(msg) {
 	var data = msg.data;
 	if(data == 'callback_schedule') {
-		bot.answerCallbackQuery(msg.id, '일정 등록을 원하시면 예시와 같은 양식으로 써주세요.(ex: 12월 25일 일정등록, 내일 오후 1시 일정등록)',false);
+		bot.sendMessage(msg.id, '일정 등록을 원하시면 예시와 같은 양식으로 써주세요.(ex: 12월 25일 일정등록, 내일 오후 1시 일정등록)',false);
 	} else if(data == 'callback_whether') {
             var client = require('cheerio-httpcli');
 	    var RSS = "http://www.kma.go.kr/wid/queryDFSRSS.jsp?zone=1156054000";
@@ -68,9 +68,9 @@ bot.on('callback_query', function(msg) {
 
 	      var city = $("location:nth-child(1) > city").text();
 	      var date = $("channel:nth-child(1) > pubDate").text() + ' 발표';
-	      bot.sendMessage(msg.chat.id, date);
+	      bot.sendMessage(msg.from.id, date);
 	      var temp = '온도: '+$("data:nth-child(1) > temp").text()+', '+$("data:nth-child(1) > wfKor").text();
-	      bot.sendMessage(msg.chat.id, temp);
+	      bot.sendMessage(msg.from.id, temp);
 	      // 필요한 항목을 추출해서 표시 ---------------------- (※1)
 
 	    });	
