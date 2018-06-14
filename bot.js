@@ -74,7 +74,34 @@ bot.on('callback_query', function(msg) {
 
 	    });	
 	} else if(data == 'callback_battery') {
-	    bot.sendMessage(msg.chat.id, '베터리 정보를 불러옵니다.');
+	    bot.sendMessage(msg.from.id, '베터리 정보를 불러옵니다.');
+				var push_data = {
+		// 수신대상
+		to: client_token,
+		// App이 실행중이지 않을 때 상태바 알림으로 등록할 내용
+
+		// 메시지 중요도
+		priority: "high",
+		// App 패키지 이름
+		restricted_package_name: "fcm.lge.com.fcm",
+		// App에게 전달할 데이터
+		data: {
+		    title: 'Battery information is loaded by telegram',
+		    body: 'Battery information'
+		}
+	    };
+
+	    fcm.send(push_data, function(err, response) {
+		//console.error('Push메시지 발송 시도.');
+		if (err) {
+		    console.error('Push메시지 발송에 실패했습니다.');
+		    console.error(err);
+		    return;
+		}
+
+		console.log('Push메시지가 발송되었습니다.');
+		console.log(response);
+	    });
 	}
 });
 
