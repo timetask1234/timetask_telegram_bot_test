@@ -55,7 +55,7 @@ bot.onText(/\/start/, function(msg, match) {
 bot.on('callback_query', function(msg) {
 	var data = msg.data;
 	if(data == 'callback_schedule') {
-       bot.sendMessage(msg.chat.id, '일정 등록을 원하시면 예시와 같은 양식으로 써주세요.(ex: 12월 25일 일정등록, 내일 오후 1시 일정등록)',false);
+       bot.sendMessage(msg.id, '일정 등록을 원하시면 예시와 같은 양식으로 써주세요.(ex: 12월 25일 일정등록, 내일 오후 1시 일정등록)');
 	} else if(data == 'callback_whether') {
             var client = require('cheerio-httpcli');
 	    var RSS = "http://www.kma.go.kr/wid/queryDFSRSS.jsp?zone=1156054000";
