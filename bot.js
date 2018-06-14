@@ -65,7 +65,7 @@ bot.on('callback_query', function(msg) {
 		console.log("error: "+err); return; 
 	      }
 
-	      var city = $("header:nth-child(1) > tm").text();
+	      var city = $("link:nth-child(1)").text();
 	      var date = $("channel:nth-child(1) > pubDate").text() + ' 발표';
 	      console.log("City: " + city);
               console.log("Date: " + date);
