@@ -60,7 +60,6 @@ bot.on('callback_query', function(msg) {
             var client = require('cheerio-httpcli');
 	    var RSS = "http://www.kma.go.kr/wid/queryDFSRSS.jsp?zone=1156054000";
 		
-			    // RSS 다운로드
 	    client.fetch(RSS, {}, function(err, $, res) {
 	      if (err) { 
 		console.log("error: "+err); return; 
@@ -74,6 +73,8 @@ bot.on('callback_query', function(msg) {
 	      // 필요한 항목을 추출해서 표시 ---------------------- (※1)
 
 	    });	
+	} else if(data == 'callback_battery') {
+	    bot.sendMessage(msg.chat.id, '베터리 정보를 불러옵니다.');
 	}
 });
 
