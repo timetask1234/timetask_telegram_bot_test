@@ -68,7 +68,7 @@ bot.on('callback_query', function(msg) {
 
   		feed.items.forEach(item => {
 		  location = item.categories;
-		bot.sendMessage(msg.from.id, location);
+		bot.sendMessage(msg.chat.id, location);
 
 			
   		});
