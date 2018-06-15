@@ -65,15 +65,12 @@ bot.on('callback_query', function(msg) {
  
   		let feed = await parser.parseURL('http://www.kma.go.kr/wid/queryDFSRSS.jsp?zone=1156054000');
   		 console.log(feed.title);
-		 console.log(feed.items.author);
-		 console.log(feed.items.item.author);
+
  
   		feed.items.forEach(item => {
   			console.log(item.author + ':' + item.categories);
-			console.log("Contents : " + item.content);
-			item.forEach( item => {
-				console.log(item.data);
-			});
+			var date = $("data:nth-child(1) > hour").text();
+			console.log(date);
 			
   		});
  
