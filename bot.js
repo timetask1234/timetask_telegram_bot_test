@@ -67,8 +67,8 @@ bot.on('callback_query', function(msg) {
 		let feed = await parser.parseURL(RSS);
 
   		feed.items.forEach(item => {
-		  location = item.categories;
-		bot.sendMessage(msg.chat.id, location);
+		  location = item.categories.text();
+		bot.sendMessage(msg.from.id, location);
 
 			
   		});
