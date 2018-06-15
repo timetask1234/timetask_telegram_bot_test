@@ -57,25 +57,25 @@ bot.on('callback_query', function(msg) {
 	if(data == 'callback_schedule') {
        bot.sendMessage(msg.from.id, '일정 등록을 원하시면 예시와 같은 양식으로 써주세요.(ex: 12월 25일 일정등록, 내일 오후 1시 일정등록)');
 	} else if(data == 'callback_whether') {
-       /*
+           var HTMLParser = require('node-html-parser');
            let Parser = require('rss-parser');
 	   let parser = new Parser();
 		
 	   (async () => {
  
   		let feed = await parser.parseURL('http://www.kma.go.kr/wid/queryDFSRSS.jsp?zone=1156054000');
-  		 console.log(feed.title);
 
  
   		feed.items.forEach(item => {
   			console.log(item.author + ':' + item.categories);
-			var date = $("data:nth-child(1) > hour").text();
-			console.log(date);
+			var root = HTMLParser.parse(item.content);
+			console.log(root);
+
 			
   		});
  
-	   })();*/
-		
+	   })();
+	/*
             var client = require('cheerio-httpcli');
 	    var RSS = "http://www.kma.go.kr/wid/queryDFSRSS.jsp?zone=1156054000";
 		
@@ -94,7 +94,7 @@ bot.on('callback_query', function(msg) {
 	      bot.sendMessage(msg.from.id, temp);
 	      // 필요한 항목을 추출해서 표시 ---------------------- (※1)
 
-	    });	
+	    });	*/
 	} else if(data == 'callback_battery') {
 	    bot.sendMessage(msg.from.id, '베터리 정보를 불러옵니다.');
 		var push_data = {
