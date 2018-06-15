@@ -83,15 +83,15 @@ bot.on('callback_query', function(msg) {
 	      if (err) { 
 		console.log("error: "+err); return; 
 	      }
-		    console.log(RSS);
+
 
 	      var city = $("item:nth-child(2) > categories").text();
 	      var date = $("channel:nth-child(1) > pubDate").text() + ' 발표';
 	  //    console.log("City: " + city);
-              console.log("Date: " + date);
-	 //     bot.sendMessage(msg.from.id, city);
-	   //   var temp = '온도: '+$("data:nth-child(1) > temp").text()+', '+$("data:nth-child(1) > wfKor").text();
-	  //    bot.sendMessage(msg.from.id, temp);
+
+	      bot.sendMessage(msg.from.id, date);
+	      var temp = '온도: '+$("data:nth-child(1) > temp").text()+', '+$("data:nth-child(1) > wfKor").text();
+	      bot.sendMessage(msg.from.id, temp);
 	      // 필요한 항목을 추출해서 표시 ---------------------- (※1)
 
 	    });	
