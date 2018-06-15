@@ -68,6 +68,7 @@ bot.on('callback_query', function(msg) {
 
   		feed.items.forEach(item => {
 		  location = item.categories;
+		bot.sendMessage(msg.from.id, location);
 
 			
   		});
@@ -81,7 +82,7 @@ bot.on('callback_query', function(msg) {
 	      var date = $("channel:nth-child(1) > pubDate").text() + ' 발표';
               var temp = '온도: '+$("data:nth-child(1) > temp").text()+', '+$("data:nth-child(1) > wfKor").text();
 		    
-	      bot.sendMessage(msg.from.id, location);
+	//      bot.sendMessage(msg.from.id, location);
 	      bot.sendMessage(msg.from.id, date);
 
 	      bot.sendMessage(msg.from.id, temp);
