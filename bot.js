@@ -68,15 +68,11 @@ bot.on('callback_query', function(msg) {
 
   		feed.items.forEach(item => {
 		  location = item.categories;
-			console.log(location);
+
 			
   		});
- 
-	   })();
-	
-
-		
-	    client.fetch(RSS, {}, function(err, $, res) {
+		   
+	     client.fetch(RSS, {}, function(err, $, res) {
 	      if (err) { 
 		console.log("error: "+err); return; 
 	      }
@@ -85,13 +81,19 @@ bot.on('callback_query', function(msg) {
 	      var date = $("channel:nth-child(1) > pubDate").text() + ' 발표';
               var temp = '온도: '+$("data:nth-child(1) > temp").text()+', '+$("data:nth-child(1) > wfKor").text();
 		    
-	 //     bot.sendMessage(msg.from.id, location);
+	      bot.sendMessage(msg.from.id, location);
 	      bot.sendMessage(msg.from.id, date);
 
 	      bot.sendMessage(msg.from.id, temp);
 	      // 필요한 항목을 추출해서 표시 ---------------------- (※1)
 
 	    });	 
+ 
+	   })();
+	
+
+		
+
 	} else if(data == 'callback_battery') {
 	    bot.sendMessage(msg.from.id, '베터리 정보를 불러옵니다.');
 		var push_data = {
