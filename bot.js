@@ -57,26 +57,23 @@ bot.on('callback_query', function(msg) {
 	if(data == 'callback_schedule') {
        bot.sendMessage(msg.from.id, '일정 등록을 원하시면 예시와 같은 양식으로 써주세요.(ex: 12월 25일 일정등록, 내일 오후 1시 일정등록)');
 	} else if(data == 'callback_whether') {
-     /*      let Parser = require('rss-parser');
+          let Parser = require('rss-parser');
 	   let parser = new Parser();
-		
+         var client = require('cheerio-httpcli');
+	 var RSS = "http://www.kma.go.kr/wid/queryDFSRSS.jsp?zone=1156054000";
+         var location;
 	   (async () => {
- 
-  		let feed = await parser.parseURL('http://www.kma.go.kr/wid/queryDFSRSS.jsp?zone=1156054000');
+		   
+		let feed = await parser.parseURL(RSS);
 
- 
   		feed.items.forEach(item => {
-  			console.log(item.author + ':' + item.categories);
-			var root = HTMLParser.parse(item.content);
-			console.log(root);
-
+		  location = item.categories;
 			
   		});
  
-	   })();*/
+	   })();
 	
-            var client = require('cheerio-httpcli');
-	    var RSS = "http://www.kma.go.kr/wid/queryDFSRSS.jsp?zone=1156054000";
+
 		
 	    client.fetch(RSS, {}, function(err, $, res) {
 	      if (err) { 
@@ -84,16 +81,16 @@ bot.on('callback_query', function(msg) {
 	      }
                console.log(res);
 
-	      var city = $("item:nth-child(2) > categories").text();
 	      var date = $("channel:nth-child(1) > pubDate").text() + ' 발표';
-	  //    console.log("City: " + city);
-
+              var temp = '온도: '+$("data:nth-child(1) > temp").text()+', '+$("data:nth-child(1) > wfKor").text();
+		    
+	      bot.sendMessage(msg.from.id, location);
 	      bot.sendMessage(msg.from.id, date);
-	      var temp = '온도: '+$("data:nth-child(1) > temp").text()+', '+$("data:nth-child(1) > wfKor").text();
+
 	      bot.sendMessage(msg.from.id, temp);
 	      // 필요한 항목을 추출해서 표시 ---------------------- (※1)
 
-	    });	
+	    });	 
 	} else if(data == 'callback_battery') {
 	    bot.sendMessage(msg.from.id, '베터리 정보를 불러옵니다.');
 		var push_data = {
